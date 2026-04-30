@@ -1,0 +1,320 @@
+{
+  "info": {
+    "_postman_id": "adab33b3-641c-4b98-81e6-2eb4dfa2ff8c",
+    "name": "Node.js Foundations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48070117",
+    "_collection_link": "https://go.postman.co/collection/48070117-adab33b3-641c-4b98-81e6-2eb4dfa2ff8c?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Module 5 Walkthrough",
+      "item": [
+        {
+          "name": "Non-existent",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3005/nonexistent",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                "nonexistent"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Node Server Test",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3005/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3005/health",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                "health"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3005/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3005",
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Module 5 Exercises",
+      "item": [
+        {
+          "name": "Exercise 5.1",
+          "item": [
+            {
+              "name": "jsonPlaceHolder",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://jsonplaceholder.typicode.com/posts/101",
+                  "protocol": "https",
+                  "host": [
+                    "jsonplaceholder",
+                    "typicode",
+                    "com"
+                  ],
+                  "path": [
+                    "posts",
+                    "101"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "User Posts",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://jsonplaceholder.typicode.com/posts",
+                  "protocol": "https",
+                  "host": [
+                    "jsonplaceholder",
+                    "typicode",
+                    "com"
+                  ],
+                  "path": [
+                    "posts"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Single User",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://jsonplaceholder.typicode.com/users/1",
+                  "protocol": "https",
+                  "host": [
+                    "jsonplaceholder",
+                    "typicode",
+                    "com"
+                  ],
+                  "path": [
+                    "users",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Add Post",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "https://jsonplaceholder.typicode.com/posts?userId=1&title=Hello&body=World",
+                  "protocol": "https",
+                  "host": [
+                    "jsonplaceholder",
+                    "typicode",
+                    "com"
+                  ],
+                  "path": [
+                    "posts"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "1"
+                    },
+                    {
+                      "key": "title",
+                      "value": "Hello"
+                    },
+                    {
+                      "key": "body",
+                      "value": "World"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Single Post",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "https://jsonplaceholder.typicode.com/posts/1",
+                  "protocol": "https",
+                  "host": [
+                    "jsonplaceholder",
+                    "typicode",
+                    "com"
+                  ],
+                  "path": [
+                    "posts",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Exercise 5.2",
+          "item": [
+            {
+              "name": "About",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3005/about",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3005",
+                  "path": [
+                    "about"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Time",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3005/time",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3005",
+                  "path": [
+                    "time"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Echo",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:3005/echo?message=hello",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3005",
+                  "path": [
+                    "echo"
+                  ],
+                  "query": [
+                    {
+                      "key": "message",
+                      "value": "hello"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Exercise 5.3",
+          "item": [
+            {
+              "name": "Users",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"role\": \"Admin\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3005/users",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3005",
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
