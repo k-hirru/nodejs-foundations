@@ -1,0 +1,265 @@
+{
+  "info": {
+    "name": "Module 10 Capstone",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notes",
+      "item": [
+        {
+          "name": "Get all notes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/notes",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes"]
+            }
+          }
+        },
+        {
+          "name": "Get all notes - filter by tag",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/notes?tag=work",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes"],
+              "query": [
+                { "key": "tag", "value": "work" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get all notes - search",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/notes?q=keyword",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes"],
+              "query": [
+                { "key": "q", "value": "keyword" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get all notes - paginated",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/notes?page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get all notes - sorted",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/notes?sort=title:asc",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes"],
+              "query": [
+                { "key": "sort", "value": "title:asc" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get all notes - combined",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/notes?tag=work&q=meeting&page=1&limit=10&sort=createdAt:desc",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes"],
+              "query": [
+                { "key": "tag", "value": "work" },
+                { "key": "q", "value": "meeting" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" },
+                { "key": "sort", "value": "createdAt:desc" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get note by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/notes/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create note",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notes",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"title\": \"My first note\",\n  \"content\": \"This is the content of my note.\",\n  \"tag\": \"work\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Create note - missing title (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notes",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"content\": \"No title provided.\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Create note - missing content (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notes",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"title\": \"No content provided\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update note",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notes/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "1"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"title\": \"Updated title\",\n  \"content\": \"Updated content.\",\n  \"tag\": \"personal\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update note - not found (404)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notes/999999",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "999999"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"title\": \"Does not exist\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete note",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/notes/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete note - not found (404)",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/notes/999999",
+              "host": ["{{baseUrl}}"],
+              "path": ["notes", "999999"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
