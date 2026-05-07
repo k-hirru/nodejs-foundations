@@ -1,5 +1,6 @@
 const express = require("express");
 const prisma = require("../db");
+const { validateCreateNote, validateUpdateNote } = require("../middleware/validate");
 
 const router = express.Router();
 
@@ -76,25 +77,9 @@ router.get("/notes/:id", async (req, res, next) => {
 });
 
 // Create a new note
-router.post("/notes", async (req, res, next) => {
+router.post("/notes", validateCreateNote, async (req, res, next) => {
   try {
     const { title, content, tag } = req.body;
-    if (!title) {
-      return res.status(400).json({ error: "title is required" });
-    } else if (title.length > 100) {
-      return res
-        .status(400)
-        .json({ error: "title must have less than 100 characters" });
-    }
-
-    if (!content) {
-      return res.status(400).json({ error: "content is required" });
-    } else if (content.length > 5000) {
-      return res
-        .status(400)
-        .json({ error: "content must have less than 5000 characters" });
-    }
-
     const note = await prisma.note.create({
       data: { title, content, tag: tag || null },
     });
@@ -105,7 +90,7 @@ router.post("/notes", async (req, res, next) => {
 });
 
 // Update a specific note by id
-router.put("/notes/:id", async (req, res, next) => {
+router.put("/notes/:id", validateUpdateNote, async (req, res, next) => {
   try {
     const note = await prisma.note.update({
       where: { id: parseInt(req.params.id) },
