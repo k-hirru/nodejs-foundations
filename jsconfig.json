@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "checkJs": true,
+    "maxNodeModuleJsDepth": 1
+  },
+  "include": [
+    "**/*.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "module-6/node_modules",
+    "module-7/node_modules",
+    "module-8/node_modules",
+    "module-9/node_modules"
+  ]
+}
