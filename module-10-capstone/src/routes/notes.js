@@ -1,46 +1,28 @@
 const express = require("express");
 const prisma = require("../db");
-const { validateCreateNote, validateUpdateNote } = require("../middleware/validate");
+const { validateGetNotes, validateCreateNote, validateUpdateNote } = require("../middleware/validate");
 
 const router = express.Router();
 
 // Get all notes, sorted by lastest, filtered by a tag, and can be paginated
-router.get("/notes", async (req, res, next) => {
+router.get("/notes", validateGetNotes, async (req, res, next) => {
   try {
+    const { page, limit, tag, q, sort } = res.locals.query;
     const where = {};
-    let page;
-    let limit;
 
-    // Filter by tag
-    if (req.query.tag) {
-      where.tag = req.query.tag;
-    }
+    if (tag) where.tag = tag;
 
-    // Case-insensitive search in title and content
-    if (req.query.q) {
+    if (q) {
       where.OR = [
-        { title: { contains: req.query.q } },
-        { content: { contains: req.query.q } },
+        { title: { contains: q } },
+        { content: { contains: q } },
       ];
     }
 
-    // Pagination
-    if (req.query.page) {
-      page = parseInt(req.query.page);
-    }
-
-    if (req.query.limit) {
-      limit = parseInt(req.query.limit) || 10;
-    }
-
-    // Sorting
     let orderBy = { createdAt: "desc" };
-
-    if (req.query.sort) {
-      const [field, direction] = req.query.sort.split(":");
-      if (field && (direction === "asc" || direction === "desc")) {
-        orderBy = { [field]: direction };
-      }
+    if (sort) {
+      const [field, direction] = sort.split(":");
+      orderBy = { [field]: direction };
     }
 
     const total = await prisma.note.count({ where });

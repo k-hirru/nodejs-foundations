@@ -1,3 +1,28 @@
+const SORTABLE_FIELDS = new Set(["title", "content", "tag", "createdAt", "updatedAt"]);
+
+function validateGetNotes(req, res, next) {
+  const rawPage = parseInt(req.query.page);
+  const rawLimit = parseInt(req.query.limit);
+
+  let sort = req.query.sort;
+  if (sort) {
+    const [field, direction] = sort.split(":");
+    if (!SORTABLE_FIELDS.has(field) || (direction !== "asc" && direction !== "desc")) {
+      sort = undefined;
+    }
+  }
+
+  res.locals.query = {
+    page: !isNaN(rawPage) && rawPage >= 1 ? rawPage : undefined,
+    limit: !isNaN(rawLimit) && rawLimit > 0 ? rawLimit : undefined,
+    sort,
+    tag: req.query.tag,
+    q: req.query.q,
+  };
+
+  next();
+}
+
 function validateCreateNote(req, res, next) {
   const { title, content } = req.body;
 
@@ -24,4 +49,4 @@ function validateUpdateNote(req, res, next) {
   next();
 }
 
-module.exports = { validateCreateNote, validateUpdateNote };
+module.exports = { validateGetNotes, validateCreateNote, validateUpdateNote };
