@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+ 
+datasource db {
+  provider = "sqlite"
+}
+ 
+model Note {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  tag       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Tag {
+    id   Int    @id @default(autoincrement())
+    name String @unique
+  }
